@@ -1,0 +1,18 @@
+{
+	"rodapecontato": [
+		{
+			"contato": "Contatos",
+			"endereco": "Rua Alice Maria de Oliveira, 23 - Veneza - Ribeirão das Neves - Minas Gerais",
+			"telefone": "(31)36548-5248",
+			"email": "bifaolinguica@bifao.com",
+			"cnpj": "CNPJ: 457854285481-5"
+		},
+		{
+			"contato": "Contatos",
+			"endereco": "Rua Alice Maria de Oliveira, 23 - Veneza - Ribeirão das Neves - Minas Gerais",
+			"telefone": "(31)36548-5248",
+			"email": "bifaolinguica@bifao.com",
+			"cnpj": "CNPJ: 457854285481-5"
+		}
+	]
+}

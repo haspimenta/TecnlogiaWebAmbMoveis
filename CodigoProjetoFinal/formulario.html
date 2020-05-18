@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!-- codigo para nome da pagina, formas de pesquisa, link de paginação e formatação css, font, bootstrap, imagens -->
+    <meta charset="utf-8">
+    <title>Bifão Linguiça</title>
+    <meta name="bife linguiça" content="bife, carne, linguiça">
+    <meta name="Hugo Alexandre Silva-HAS e Jaciara Ferreira" content="Vendas de bifes de linguiça a quilo.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/imports.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="icon" type="image/png" href="images/bifaologo.jpg">
+    <!-- Biblioteca JavaScript, funções de comandos, botões, janelas, movimentações e tarefas -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/config.js"></script>
+</head>
+<body class="home" style>
+<!--fixar barra navegação-->
+<div class="navbar navbar-inverse navbar-fixed-top headroom animated slideDown">
+    <!--clase da divisão do cabeçalho da pagina -->
+    <div class="container">
+        <div class="navbar-header">
+            <!-- inserir o logo com slogan e função para o botão menu -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand"><img src="images/bifaolinguica_logoslogan1.png" alt="Bifão Linguiça"></a>
+        </div>
+        <!-- sub=divisão para alinhamento do menu -->
+        <div class="navbar-collapse collapse" style="height:1px;">
+            <ul class="nav navbar-nav pull-right">
+                <li class="active"><a href="#">Início</a></li>
+                <li><a href="sobrecarne.html">Sobre a Carne</a></li>
+                <li><a href="sobreempresa.html">Sobre a Empresa</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a class="btn" href="entrar.html">Entrar</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="jumbotron top-space">
+    <!--classe da divisão das imagens para os produtos, corpo no meio, entre cabeçalho e rodapé -->
+        <hr>
+        <div class="container">
+            <h3 class="page-title">Avalie a sua entrega</h3>
+            <div class="row">
+                <div class="col-sd-4">
+                    <p>Gostariamos de contar com a sua avaliação, 1 minuto apenas para sabermos se estamos lhe atendendo conforme esperado ou se existe alguma reclamação ou sugestão.<br>
+                    </p>
+                </div>
+
+                <form id="formId">
+                    <div class="row">
+                        <div class="col-sd-4">
+                            <label class="text-danger">*Nome*</label>
+                            <input required aria-required="true" id="nome" class="form-control" type="text" placeholder="Nome">
+                        </div>
+                        <div class="col-sd-4">
+                            <label class="text-danger">*Avalie de 0 a 5, sendo 0 muito ruim*</label>
+                            <input required aria-required="true" id="nota" class="form-control" type="text" placeholder="0 Muito ruim, 5 Excelente">
+                        </div>
+                        <div class="col-sd-4">
+                            <label class="text-danger">*Gostaria de um contato imediato*</label>
+                            <input required aria-required="true" id="contato" class="form-control" type="tel" placeholder="Sim ou Não">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sd-12">
+                            <label class="text-danger">*Digite aqui sua sugestão ou reclamação*</label>
+                            <textarea placeholder="Sugestão ou Reclamação" id="sugestao" class="form-control" rows="9"></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="info" class="h-caption"></div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <button class="btn-action" type="submit" value="Salvar" id="btnSalvar" onclick="Adicionar()"><a href="menucliente.html">Enviar</a></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+
+<table id="tblListar"><script type="text/javascript">Listar()</script></table>
+
+<!-- rodapé 1, JQUERY, JSON e formatação e paginação bootstrap, endereço e contato -->
+<div id="rodape"></div>
+
+<script>
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            const myArr = JSON.parse(this.responseText);
+            document.getElementById('rodape').innerHTML = generateRodape1(myArr.rodapecontato[1].contato, myArr.rodapecontato[1].endereco, myArr.rodapecontato[1].telefone, myArr.rodapecontato[1].email, myArr.rodapecontato[1].cnpj);}
+    };
+    xmlhttp.open('GET', 'rodapeprimeiro.json', true);
+    xmlhttp.send();
+
+    function generateRodape1(contato, endereco, telefone, email, cnpj) {
+
+        const htmlrodape = '<div class="footer1">\n' +
+            '           <div class="container">\n' +
+            '              <h3 class="widget-title">'+ contato +'</h3>\n' +
+            '             <div class="widget-body">\n' +
+            '                      <p>'+ telefone +'<br>\n' +
+            '                     <a href="mailto:#">'+ email +'</a>\n' +
+            '                    <h6>'+ endereco +'</h6>\n' +
+            '               </p>\n' +
+            '                    <h6>'+ cnpj +'</h6>\n' +
+            '          </div>\n' +
+            '     </div>\n' +
+            ' </div>';
+        return htmlrodape;
+    }
+</script>
+
+<footer>
+    <!-- rodapé 2, com formatação e paginação bootstrap, links para demais paginas e login -->
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="simplenav">
+                            <a href="#">Início</a> |
+                            <a href="sobrecarne.html">Sobre a Carne</a> |
+                            <a href="sobreempresa.html">Sobre a Empresa</a> |
+                            <a href="contato.html">Contato</a> |
+                            <b><a class="btn" href="entrar.html">Entrar</a></b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+	"products": [
+		{
+			"photo": "images/bifaolinguica_tradicional.png",
+			"name": "Bife Tradicional",
+			"price": "R$10.90"
+		},
+		{
+			"photo": "images/bifaolinguica_azeitona.png",
+			"name": "Bife Azeitonas",
+			"price": "R$10.90"
+		},
+		{
+			"photo": "images/bifaolinguica_apimentada.png",
+			"name": "Bife apimentado",
+			"price": "R$12.90"
+		},
+		{
+			"photo": "images/bifaolinguica_tomate.png",
+			"name": "Bife Tomate Seco",
+			"price": "R$12.90"
+		}
+	]
+}
